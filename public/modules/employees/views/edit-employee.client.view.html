@@ -1,22 +1,79 @@
 <section data-ng-controller="EmployeesController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Employee</h1>
+        <h2><span class="glyphicon glyphicon-user"> Edit Employee</span></h2>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-8">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="firstName">First Name</label>
+
                     <div class="controls">
-                        <input type="text" data-ng-model="employee.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="employee.firstName" id="firstName" class="form-control"
+                               placeholder="First Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <label class="control-label" for="lastName">Last Name</label>
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="employee.lastName" id="lastName" class="form-control"
+                               placeholder="Last Name" required>
+                    </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div class="form-group">
+                    <label class="control-label" for="experience">Experience</label>
+
+                    <div class="controls">
+                        <input type="number" data-ng-model="employee.experience" id="experience" class="form-control"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="skills">Skills</label>
+
+                    <div class="controls" id="skills">
+
+                        <tags-input ng-model="employee.skills" display-property="name">
+                        </tags-input>
+                        (Press tab to convert text to tag)
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="role">Role</label>
+
+                    <div class="controls" id="role">
+                        <select ng-model="employee.role" ng-options="v for v in roles track by v"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="billable">Billable</label>
+                    <input type="checkbox" class="controls" id="billable" ng-model="employee.billable">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="organization">Organization</label>
+
+                    <div class="controls" id="organization">
+                        <select ng-model="employee.belongsTo"
+                                ng-options="org._id as org.name for org in organizations track by org._id"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="projects">Projects</label>
+
+                    <div class="controls" id="projects">
+                        <select ng-model="employee.worksFor"
+                                ng-options="project._id as project.name for project in projects track by project._id"></select>
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-default btn-primary">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>

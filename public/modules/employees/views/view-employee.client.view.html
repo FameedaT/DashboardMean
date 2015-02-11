@@ -1,21 +1,68 @@
 <section data-ng-controller="EmployeesController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="employee.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == employee.user._id))">
-		<a class="btn btn-primary" href="/#!/employees/{{employee._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="employee.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="employee.user.displayName"></span>
-		</em>
-	</small>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="page-header">
+                <h2 class="glyphicon glyphicon-user">&nbsp;<span data-ng-bind="employee.firstName"></span> <span
+                        data-ng-bind="employee.lastName"></span></h2>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="page-header pull-right"
+                 data-ng-show="((authentication.user) && (authentication.user._id == employee.user._id))">
+                <a class="btn btn-primary" href="/#!/employees/{{employee._id}}/edit">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-primary" data-ng-click="remove();">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>First Name</label></div>
+        <div class="col-xs-4" data-ng-bind="employee.firstName"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Last Name</label></div>
+        <div class="col-xs-4" data-ng-bind="employee.lastName"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Experience</label></div>
+        <div class="col-xs-4" data-ng-bind="employee.experience"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Skills</label></div>
+        <div class="col-xs-8">
+            <span data-ng-repeat="skill in employee.skills">
+                <span data-ng-bind="skill.name"></span>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Role</label></div>
+        <div class="col-xs-4" data-ng-bind="employee.role"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Billable</label></div>
+        <div class="col-xs-4" data-ng-bind="employee.billable"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Organization</label></div>
+        <div class="col-xs-4" data-ng-bind="employee.belongsTo.name"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4"><label>Projects</label></div>
+        <div class="col-xs-4" data-ng-repeat="project in employee.worksFor">
+            <span data-ng-bind="project.name"></span>
+        </div>
+    </div>
+    <small>
+        <em class="text-muted">
+            Posted on
+            <span data-ng-bind="employee.created | date:'mediumDate'"></span>
+            by
+            <span data-ng-bind="employee.user.displayName"></span>
+        </em>
+    </small>
 </section>
