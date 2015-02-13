@@ -27,7 +27,7 @@
                 <div class="col-xs-12 col-md-4">
                     <div class="panel-wrapper">
                         <div class="panel-title">
-                            {{organization.name}}
+                            <span class="badge">{{organization.name}}</span>
                         </div>
                         <div class="panel-stage">
                             <div class="row">
@@ -37,7 +37,10 @@
                                             Billable Vs Bench
                                         </div>
                                         <div class="panel-stage">
-                                            <img src="modules/organizations/img/area-chart.png" class="img-responsive">
+                                            <canvas class="chart chart-bar" data="organization.data"
+                                                    labels="organization.label" legend="true"
+                                                    series="organization.series">
+                                            </canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -49,14 +52,14 @@
                                             Projects
                                         </div>
                                         <div class="panel-stage">
-                                            <span ng-repeat="project in organization.projects">{{project.name}} &nbsp;,&nbsp;</span>
+                                            <span ng-repeat="project in organization.projects">{{project.name}} &nbsp;&nbsp;</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-notes">
-                            Owned by {{organization.owner.firstName}}&nbsp;{{organization.owner.lastName}}
+                            Owned by <span class="owner-panel-notes"> {{organization.owner.firstName}}&nbsp;{{organization.owner.lastName}}</span>
                         </div>
                     </div>
                 </div>

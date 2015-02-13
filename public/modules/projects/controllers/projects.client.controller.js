@@ -67,13 +67,29 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
         // Find a list of Projects
         $scope.find = function () {
-            $scope.projects = Projects.query();
+            $scope.projects = Projects.query(function (result) {
+                if (result != undefined) {
+                    result.forEach(function (project) {
+                        project.label = ['Billable', 'Bench'];
+                        var data = [];
+                        data.push(project.billableHeadCount);
+                        data.push(project.benchHeadCount);
+                        project.data = data;
+                    });
+                }
+            });
         };
 
         // Find existing Project
         $scope.findOne = function () {
             $scope.project = Projects.get({
                 projectId: $stateParams.projectId
+            }, function (result) {
+                result.label = ['Billable', 'Bench'];
+                var data = [];
+                data.push(result.billableHeadCount);
+                data.push(result.benchHeadCount);
+                result.data = data;
             });
         };
     }

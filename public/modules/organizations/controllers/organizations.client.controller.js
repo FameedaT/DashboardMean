@@ -63,13 +63,51 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
 
         // Find a list of Organizations
         $scope.find = function () {
-            $scope.organizations = Organizations.query();
+            $scope.organizations = Organizations.query(function (organizations) {
+                if (organizations !== undefined) {
+                    organizations.forEach(function (organization) {
+                        var label = [];
+                        var billable = [];
+                        var bench = [];
+                        var projects = organization.projects;
+                        if (projects !== undefined) {
+                            projects.forEach(function (project) {
+                                label.push(project.name);
+                                billable.push(project.billableHeadCount);
+                                bench.push(project.benchHeadCount);
+                            });
+                        }
+                        ;
+                        organization.series = ['Billable', 'Bench'];
+                        var data = [billable, bench];
+                        organization.label = label;
+                        organization.data = data;
+                    });
+                }
+            });
         };
 
         // Find existing Organization
         $scope.findOne = function () {
             $scope.organization = Organizations.get({
                 organizationId: $stateParams.organizationId
+            }, function (result) {
+                var label = [];
+                var billable = [];
+                var bench = [];
+                var projects = result.projects;
+                if (projects !== undefined) {
+                    projects.forEach(function (project) {
+                        label.push(project.name);
+                        billable.push(project.billableHeadCount);
+                        bench.push(project.benchHeadCount);
+                    });
+                }
+                ;
+                result.series = ['Billable', 'Bench'];
+                var data = [billable, bench];
+                result.label = label;
+                result.data = data;
             });
         };
     }

@@ -67,7 +67,7 @@
                     <label class="control-label" for="projects">Projects</label>
 
                     <div class="controls" id="projects">
-                        <select class="form-control" ng-model="employee.worksFor"
+                        <select multiple size="5" class="form-control" ng-model="employee.worksFor"
                                 ng-options="project._id as project.name for project in projects"></select>
                     </div>
                 </div>

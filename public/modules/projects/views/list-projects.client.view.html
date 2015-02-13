@@ -26,7 +26,9 @@
                 <div class="col-xs-12 col-md-4">
                     <div class="panel-wrapper">
                         <div class="panel-title">
-                            {{project.name}} : <span class="badge">{{project.benchHeadCount}}</span> Open Positions
+                            <span class="badge"> {{project.name}} </span> : <span
+                                class="badge">{{project.benchHeadCount}}</span> Open Positions
+                            <div class="pull-right" data-ng-show="project.ongoing">Ongoing</div>
                         </div>
                         <div class="panel-stage">
                             <div class="row">
@@ -36,7 +38,9 @@
                                             Billable People
                                         </div>
                                         <div class="panel-stage">
-                                            <img src="modules/projects/img/pie-chart.png" class="img-responsive">
+                                            <canvas class="chart chart-doughnut" data="project.data"
+                                                    labels="project.label" legend="true">
+                                            </canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +59,7 @@
                             </div>
                         </div>
                         <div class="panel-notes">
-                            Owned by {{project.owner.firstName}}&nbsp;{{project.owner.lastName}}
+                            Owned by <span class="owner-panel-notes"> {{project.owner.firstName}}&nbsp;{{project.owner.lastName}} </span>
                         </div>
                     </div>
                 </div>

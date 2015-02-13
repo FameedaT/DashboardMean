@@ -44,7 +44,7 @@
 
                                     <div class="panel-wrapper">
                                         <div class="panel-title">
-                                            <div class="panel-stage badge">{{employee.role}}</div>
+                                            <div class="panel-stage">{{employee.role}}</div>
                                         </div>
                                         <div class="panel-stage">
                                             <small> With {{employee.experience}} years</small>
@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="panel-notes">
-                            Belongs to {{employee.belongsTo.name}}
+                            Belongs to <span class="owner-panel-notes"> {{employee.belongsTo.name}}</span>
                         </div>
                     </div>
                 </div>

@@ -24,6 +24,7 @@
     border-radius: 3px;
     margin-bottom: 10px;
 }
+
 .panel-wrapper .panel-title {
     border-bottom: 1px solid #d7d7d7;
     color: #666;
@@ -31,11 +32,13 @@
     font-weight: 200;
     padding: 7px 10px 4px;
 }
+
 .panel-wrapper .panel-stage {
     overflow: hidden;
     padding: 5px 10px;
     position: relative;
 }
+
 .panel-wrapper .panel-notes {
     background: #fbfbfb;
     border-top: 1px solid #e2e2e2;
@@ -43,20 +46,30 @@
     font-size: 12px;
     padding: 8px 10px 5px;
 }
-.panel-wrapper .red-days{
-    font-size:24pt;
-    color:red;
+
+.panel-wrapper .red-days {
+    font-size: 24pt;
+    color: red;
     text-align: center;
-    padding:16px;
+    padding: 16px;
 }
-.panel-wrapper .red{
+
+.panel-wrapper .red {
     background: red;
     color: white;
     font-weight: bold;
 }
-.panel-wrapper .grey{
+
+.panel-wrapper .grey {
     background: #fbfbfb;
 }
-.panel-wrapper .white{
+
+.panel-wrapper .white {
     background: white;
+}
+
+.owner-panel-notes {
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
 }
