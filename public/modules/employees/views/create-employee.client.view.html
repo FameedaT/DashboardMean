@@ -27,7 +27,8 @@
                     <label class="control-label" for="experience">Experience</label>
 
                     <div class="controls">
-                        <input type="number" data-ng-model="experience" id="experience" class="form-control" required>
+                        <input type="number" data-ng-model="experience" id="experience" class="form-control" min="0"
+                               required>
                     </div>
                 </div>
 
@@ -35,7 +36,7 @@
                     <label class="control-label" for="skills">Skills</label>
 
                     <div class="controls">
-                        <tags-input ng-model="skills" id="skills">
+                        <tags-input ng-model="skills" id="skills" display-property="name">
                         </tags-input>
                         (Press tab to convert text to tag)
                     </div>
@@ -45,7 +46,7 @@
                     <label class="control-label" for="role">Role</label>
 
                     <div class="controls" id="role">
-                        <select ng-model="role" ng-options="role for role in roles"></select>
+                        <select class="form-control" ng-model="role" ng-options="role for role in roles"></select>
                     </div>
                 </div>
 

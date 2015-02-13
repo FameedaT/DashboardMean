@@ -1,19 +1,68 @@
 <section data-ng-controller="ProjectsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Projects</h1>
+        <h2><span class="glyphicon glyphicon-leaf"> Projects</span></h2>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="project in projects" data-ng-href="#!/projects/{{project._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="project.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="project.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="project.name"></h4>
-        </a>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <form>
+                <div class="input-group">
+                    <input type="text" ng-model="projFilterText" class="form-control"/>
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-default">
+                            <i class="glyphicon glyphicon-filter"></i> Filter
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br><br>
+
+    <div>
+        <div class="row">
+            <a data-ng-repeat="project in projects | filter:projFilterText" data-ng-href="#!/projects/{{project._id}}">
+                <div class="col-xs-12 col-md-4">
+                    <div class="panel-wrapper">
+                        <div class="panel-title">
+                            {{project.name}} : <span class="badge">{{project.benchHeadCount}}</span> Open Positions
+                        </div>
+                        <div class="panel-stage">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="panel-wrapper">
+                                        <div class="panel-title">
+                                            Billable People
+                                        </div>
+                                        <div class="panel-stage">
+                                            <img src="modules/projects/img/pie-chart.png" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel-wrapper">
+                                        <div class="panel-title">
+                                            People
+                                        </div>
+                                        <div class="panel-stage">
+                                            <span ng-repeat="member in project.members">{{member.firstName}} &nbsp;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-notes">
+                            Owned by {{project.owner.firstName}}&nbsp;{{project.owner.lastName}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!projects.$resolved || projects.length">
-    	No Projects yet, why don't you <a href="/#!/projects/create">create one</a>?
+        No Projects yet, why don't you <a href="/#!/projects/create">create one</a>?
     </div>
 </section>

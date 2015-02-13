@@ -73,7 +73,7 @@ exports.delete = function (req, res) {
  * List of Organizations
  */
 exports.list = function (req, res) {
-    Organization.find().sort('-created').populate('user', 'displayName').exec(function (err, organizations) {
+    Organization.find().sort('-created').populate('user', 'displayName').populate('projects', 'name').populate('owner', 'firstName lastName').exec(function (err, organizations) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -88,7 +88,7 @@ exports.list = function (req, res) {
  * Organization middleware
  */
 exports.organizationByID = function (req, res, next, id) {
-    Organization.findById(id).populate('user', 'displayName').populate('members', 'firstName lastName').populate('projects', 'name').exec(function (err, organization) {
+    Organization.findById(id).populate('user', 'displayName').populate('members', 'firstName lastName').populate('projects', 'name').populate('owner', 'firstName lastName').exec(function (err, organization) {
         if (err) return next(err);
         if (!organization) return next(new Error('Failed to load Organization ' + id));
         req.organization = organization;

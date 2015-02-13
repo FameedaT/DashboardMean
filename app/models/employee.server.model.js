@@ -26,7 +26,7 @@ var EmployeeSchema = new Schema({
     },
     skills: [
         {
-            type: String
+            name: String
         }
     ],
     experience: {

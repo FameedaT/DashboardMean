@@ -1,21 +1,47 @@
 <section data-ng-controller="OrganizationsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="organization.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == organization.user._id))">
-		<a class="btn btn-primary" href="/#!/organizations/{{organization._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="organization.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="organization.user.displayName"></span>
-		</em>
-	</small>
+    <div class="page-header">
+        <h2><span class="glyphicon glyphicon-tree-conifer">{{organization.name}}</span></h2>
+    </div>
+    <div class="pull-right"
+         data-ng-show="((authentication.user) && (authentication.user._id == organization.user._id))">
+        <a class="btn btn-primary" href="/#!/organizations/{{organization._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8 col-md-8">
+            <div class="panel-wrapper">
+                <div class="panel-title">
+                    {{organization.name}}
+                </div>
+                <div class="panel-stage">
+
+                    <div class="panel-wrapper">
+                        <div class="panel-title">
+                            Billable Vs Bench
+                        </div>
+                        <div class="panel-stage">
+                            <img src="modules/organizations/img/area-chart.png" class="img-responsive">
+                        </div>
+                    </div>
+
+                    <div class="panel-wrapper">
+                        <div class="panel-title">
+                            Projects
+                        </div>
+                        <div class="panel-stage"><span ng-repeat="project in organization.projects">{{project.name}} &nbsp;,&nbsp;</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-notes">
+                    Owned by {{organization.owner.firstName}}&nbsp;{{organization.owner.lastName}}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

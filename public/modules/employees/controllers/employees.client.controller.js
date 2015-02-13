@@ -5,6 +5,8 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
     function ($scope, $stateParams, $location, Authentication, Employees, Organizations, Projects) {
         $scope.authentication = Authentication;
         $scope.experience = 0;
+        $scope.organizations = Organizations.query();
+        $scope.projects = Projects.query();
 
         $scope.roles = [
             'Junior Software Developer', 'Software Developer', 'Senior Software Developer', 'Junior QA Engineer', 'QA Engineer', 'Senior QA Engineer', 'Tech Lead', 'QA Lead', 'Engineering Manager', 'QA Manager', 'Architect', 'BU Head'
@@ -20,7 +22,6 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
                 role: this.role,
                 experience: this.experience
             });
-            console.log(employee);
             // Redirect after save
             employee.$save(function (response) {
                 $location.path('employees/' + response._id);
@@ -73,8 +74,6 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
             $scope.employee = Employees.get({
                 employeeId: $stateParams.employeeId
             });
-            $scope.organizations = Organizations.query();
-            $scope.projects = Projects.query();
         };
     }
 ]);

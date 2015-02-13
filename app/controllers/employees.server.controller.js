@@ -14,7 +14,6 @@ var mongoose = require('mongoose'),
 exports.create = function (req, res) {
     var employee = new Employee(req.body);
     employee.user = req.user;
-
     employee.save(function (err) {
         if (err) {
             return res.status(400).send({
@@ -73,7 +72,7 @@ exports.delete = function (req, res) {
  * List of Employees
  */
 exports.list = function (req, res) {
-    Employee.find().sort('-created').populate('user', 'displayName').exec(function (err, employees) {
+    Employee.find().sort('-created').populate('user', 'displayName').populate('belongsTo', 'name').populate('worksFor', 'name').exec(function (err, employees) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
