@@ -68,7 +68,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
         // Find a list of Projects
         $scope.find = function () {
             $scope.projects = Projects.query(function (result) {
-                if (result != undefined) {
+                if (result !== undefined) {
                     result.forEach(function (project) {
                         project.label = ['Billable', 'Bench'];
                         var data = [];

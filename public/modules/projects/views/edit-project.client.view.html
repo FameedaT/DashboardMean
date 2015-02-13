@@ -66,7 +66,7 @@
                     <label class="control-label" for="employees">Owner</label>
 
                     <div class="controls" id="employees">
-                        <select class="form-control" ng-model="project.owner"
+                        <select class="form-control" data-ng-model="project.owner"
                                 ng-options="emp._id as emp.firstName for emp in employees"></select>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <label class="control-label" for="organization">Organization</label>
 
                     <div class="controls" id="organization">
-                        <select class="form-control" ng-model="project.belongsTo"
+                        <select class="form-control" data-ng-model="project.belongsTo"
                                 ng-options="org._id as org.name for org in organizations"></select>
                     </div>
                 </div>

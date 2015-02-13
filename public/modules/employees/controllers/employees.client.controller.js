@@ -75,5 +75,9 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
                 employeeId: $stateParams.employeeId
             });
         };
+
+        $scope.orgSelected = function () {
+            console.log('OrgChanged' + $scope.employee);
+        }
     }
 ]);

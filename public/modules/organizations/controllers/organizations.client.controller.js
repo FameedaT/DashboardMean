@@ -77,7 +77,6 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                                 bench.push(project.benchHeadCount);
                             });
                         }
-                        ;
                         organization.series = ['Billable', 'Bench'];
                         var data = [billable, bench];
                         organization.label = label;
@@ -103,7 +102,6 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                         bench.push(project.benchHeadCount);
                     });
                 }
-                ;
                 result.series = ['Billable', 'Bench'];
                 var data = [billable, bench];
                 result.label = label;

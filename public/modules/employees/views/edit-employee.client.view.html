@@ -58,7 +58,7 @@
                     <label class="control-label" for="organization">Organization</label>
 
                     <div class="controls" id="organization">
-                        <select class="form-control" ng-model="employee.belongsTo"
+                        <select class="form-control" ng-model="employee.belongsTo" ng-change="orgSelected()"
                                 ng-options="org._id as org.name for org in organizations"></select>
                     </div>
                 </div>
