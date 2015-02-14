@@ -5,7 +5,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
     function ($scope, $stateParams, $location, Authentication, Projects, Employees, Organizations) {
         $scope.authentication = Authentication;
         $scope.organizations = Organizations.query();
-        $scope.employees = Employees.query();
         $scope.totalHeadCount = 0;
         $scope.billableHeadCount = 0;
         $scope.benchHeadCount = 0;
@@ -90,6 +89,20 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 data.push(result.billableHeadCount);
                 data.push(result.benchHeadCount);
                 result.data = data;
+                $scope.organizations.forEach(function (org) {
+                    if (org._id == $scope.project.belongsTo) {
+                        $scope.employees = org.members;
+                    }
+                });
+            });
+        };
+
+        $scope.orgSelected = function () {
+            $scope.project.owner = undefined;
+            $scope.organizations.forEach(function (org) {
+                if (org._id == $scope.project.belongsTo) {
+                    $scope.employees = org.members;
+                }
             });
         };
     }

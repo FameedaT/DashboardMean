@@ -42,7 +42,7 @@
                     <label class="control-label" for="employees">Owner</label>
 
                     <div class="controls" id="employees">
-                        <select class="form-control" ng-model="organization.owner"
+                        <select class="form-control" ng-model="organization.owner._id"
                                 ng-options="emp._id as emp.firstName for emp in employees"></select>
                     </div>
                 </div>

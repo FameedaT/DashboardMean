@@ -22,7 +22,7 @@
 
     <div>
         <div class="row">
-            <a data-ng-repeat="organization in organizations | filter:orgFilterText"
+            <a data-ng-repeat="organization in organizations | filter:{name:orgFilterText}"
                data-ng-href="#!/organizations/{{organization._id}}">
                 <div class="col-xs-12 col-md-4">
                     <div class="panel-wrapper">

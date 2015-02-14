@@ -6,7 +6,6 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
         $scope.authentication = Authentication;
         $scope.experience = 0;
         $scope.organizations = Organizations.query();
-        $scope.projects = Projects.query();
 
         $scope.roles = [
             'Junior Software Developer', 'Software Developer', 'Senior Software Developer', 'Junior QA Engineer', 'QA Engineer', 'Senior QA Engineer', 'Tech Lead', 'QA Lead', 'Engineering Manager', 'QA Manager', 'Architect', 'BU Head'
@@ -22,9 +21,11 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
                 role: this.role,
                 experience: this.experience
             });
+
             // Redirect after save
             employee.$save(function (response) {
                 $location.path('employees/' + response._id);
+
                 // Clear form fields
                 $scope.firstName = '';
                 $scope.lastName = '';
@@ -40,7 +41,6 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
         $scope.remove = function (employee) {
             if (employee) {
                 employee.$remove();
-
                 for (var i in $scope.employees) {
                     if ($scope.employees [i] === employee) {
                         $scope.employees.splice(i, 1);
@@ -56,7 +56,6 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
         // Update existing Employee
         $scope.update = function () {
             var employee = $scope.employee;
-
             employee.$update(function () {
                 $location.path('employees/' + employee._id);
             }, function (errorResponse) {
@@ -73,11 +72,22 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
         $scope.findOne = function () {
             $scope.employee = Employees.get({
                 employeeId: $stateParams.employeeId
+            }, function (result) {
+                $scope.organizations.forEach(function (org) {
+                    if ((result.belongsTo != undefined) && (org._id == result.belongsTo._id)) {
+                        $scope.projects = org.projects;
+                    }
+                });
             });
         };
 
         $scope.orgSelected = function () {
-            console.log('OrgChanged' + $scope.employee);
-        }
+            $scope.employee.worksFor = [];
+            $scope.organizations.forEach(function (org) {
+                if (org._id == $scope.employee.belongsTo) {
+                    $scope.projects = org.projects;
+                }
+            });
+        };
     }
 ]);

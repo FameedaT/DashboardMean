@@ -22,7 +22,8 @@
 
     <div>
         <div class="row">
-            <a data-ng-repeat="project in projects | filter:projFilterText" data-ng-href="#!/projects/{{project._id}}">
+            <a data-ng-repeat="project in projects | filter:{name:projFilterText}"
+               data-ng-href="#!/projects/{{project._id}}">
                 <div class="col-xs-12 col-md-4">
                     <div class="panel-wrapper">
                         <div class="panel-title">

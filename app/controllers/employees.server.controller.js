@@ -72,7 +72,7 @@ exports.delete = function (req, res) {
  * List of Employees
  */
 exports.list = function (req, res) {
-    Employee.find().sort('-created').populate('user', 'displayName').populate('belongsTo', 'name').populate('worksFor', 'name').exec(function (err, employees) {
+    Employee.find().sort('firstName').populate('user', 'displayName').populate('belongsTo', 'name').populate('worksFor', 'name').exec(function (err, employees) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -87,7 +87,7 @@ exports.list = function (req, res) {
  * Employee middleware
  */
 exports.employeeByID = function (req, res, next, id) {
-    Employee.findById(id).populate('user', 'displayName').populate('belongsTo').populate('worksFor').exec(function (err, employee) {
+    Employee.findById(id).populate('user', 'displayName').populate('belongsTo', 'name').populate('worksFor', 'name').exec(function (err, employee) {
         if (err) return next(err);
         if (!employee) return next(new Error('Failed to load Employee ' + id));
         req.employee = employee;
