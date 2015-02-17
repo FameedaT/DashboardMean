@@ -1,6 +1,6 @@
 <section data-ng-controller="OrganizationsController" data-ng-init="findOne()">
     <div class="page-header">
-        <h2><span class="glyphicon glyphicon-tree-conifer">{{organization.name}}</span></h2>
+        <h2><span class="glyphicon glyphicon-tree-conifer">&nbsp;Details</span></h2>
     </div>
     <div class="pull-right"
          data-ng-show="((authentication.user) && (authentication.user._id == organization.user._id))">
@@ -15,6 +15,9 @@
     <div class="row">
         <div class="col-xs-8 col-md-8">
             <div class="panel-wrapper">
+                <div class="panel-title">
+                    <span class="badge">{{organization.name}}</span>
+                </div>
                 <div class="panel-stage">
 
                     <div class="panel-wrapper">

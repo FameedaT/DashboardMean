@@ -100,12 +100,16 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                         label.push(project.name);
                         billable.push(project.billableHeadCount);
                         bench.push(project.benchHeadCount);
+                        console.log(project.name);
+                        console.log('project.billableHeadCount ' + project.billableHeadCount);
+                        console.log('project.benchHeadCount ' + project.benchHeadCount);
                     });
                 }
                 result.series = ['Billable', 'Bench'];
                 var data = [billable, bench];
                 result.label = label;
                 result.data = data;
+                console.log('data ' + result.data);
             });
         };
     }

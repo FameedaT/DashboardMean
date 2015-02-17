@@ -69,7 +69,12 @@
 }
 
 .owner-panel-notes {
-    color:#0d3349;
+    color: #0d3349;
     font-size: 14px;
     font-weight: bold;
+}
+
+.panel-wrapper .panel-title .badge {
+    font-size: 15px;
+    background-color: #0099cc;
 }
