@@ -60,5 +60,4 @@ var EmployeeSchema = new Schema({
 });
 
 EmployeeSchema.plugin(relationship, {relationshipPathName: ['belongsTo', 'worksFor']});
-
 mongoose.model('Employee', EmployeeSchema);

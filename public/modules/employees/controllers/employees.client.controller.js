@@ -73,6 +73,7 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
             $scope.employee = Employees.get({
                 employeeId: $stateParams.employeeId
             }, function (result) {
+                $scope.employee.belongsTo = result.belongsTo;
                 $scope.organizations.forEach(function (org) {
                     if ((result.belongsTo != undefined) && (org._id == result.belongsTo._id)) {
                         $scope.projects = org.projects;

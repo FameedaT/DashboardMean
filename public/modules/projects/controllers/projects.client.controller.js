@@ -90,7 +90,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 data.push(result.benchHeadCount);
                 result.data = data;
                 $scope.organizations.forEach(function (org) {
-                    if (org._id == $scope.project.belongsTo) {
+                    if (org._id == result.belongsTo) {
                         $scope.employees = org.members;
                     }
                 });
@@ -100,7 +100,11 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
         $scope.orgSelected = function () {
             $scope.project.owner = undefined;
             $scope.organizations.forEach(function (org) {
+                console.log('1  ' + org._id);
+                console.log('2  ' + $scope.project.belongsTo);
                 if (org._id == $scope.project.belongsTo) {
+                    console.log('Same  ' + org._id);
+                    console.log(org.members);
                     $scope.employees = org.members;
                 }
             });

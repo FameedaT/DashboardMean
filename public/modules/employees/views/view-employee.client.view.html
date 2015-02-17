@@ -20,42 +20,62 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-4"><label>First Name</label></div>
-        <div class="col-xs-4" data-ng-bind="employee.firstName"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Last Name</label></div>
-        <div class="col-xs-4" data-ng-bind="employee.lastName"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Experience</label></div>
-        <div class="col-xs-4" data-ng-bind="employee.experience"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Skills</label></div>
-        <div class="col-xs-4">
-            <span data-ng-repeat="skill in employee.skills">
-                <span data-ng-bind="skill.name"></span>&nbsp;&nbsp;
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Role</label></div>
-        <div class="col-xs-4" data-ng-bind="employee.role"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Billable</label></div>
-        <div class="col-xs-4" data-ng-show="employee.billable">Yes</div>
-        <div class="col-xs-4" data-ng-show="!employee.billable">No</div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Organization</label></div>
-        <div class="col-xs-4" data-ng-bind="employee.belongsTo.name"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4"><label>Projects</label></div>
-        <div class="col-xs-4" data-ng-repeat="project in employee.worksFor">
-            <span data-ng-bind="project.name"></span>
+        <div class="col-xs-12 col-md-12">
+            <div class="panel-wrapper">
+                <div class="panel-title">
+                    <span class="badge"> {{employee.firstName}}{{employee.lastName}} </span>
+
+                    <div class="pull-right" data-ng-show="employee.billable">Billable</div>
+                </div>
+                <div class="panel-stage">
+                    <div class="row">
+                        <div class="col-xs-4 col-md-4">
+                            <div class="panel-wrapper">
+                                <div class="panel-title">
+                                </div>
+                                <div class="panel-stage grey">
+                                    <img src='modules/employees/img/profile.jpg'
+                                         class='img-responsive img-circle white'>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-8 col-md-8">
+                            <div class="panel-wrapper">
+                                <div class="panel-title">
+                                    <div class="panel-stage">{{employee.role}}</div>
+                                </div>
+                                <div class="panel-stage">
+                                    <small> With {{employee.experience}} years</small>
+                                </div>
+                            </div>
+                            <div class="panel-wrapper">
+                                <div class="panel-title">
+                                    <small class="panel-stage"> Projects</small>
+                                </div>
+                                <div class="panel-stage">
+                                    <small data-ng-repeat="proj in employee.worksFor">{{proj.name}} &nbsp;&nbsp;</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel-wrapper">
+                                <div class="panel-title">
+                                    Skills
+                                </div>
+                                        <span class="badge"
+                                              data-ng-repeat="skill in employee.skills">{{skill.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-notes">
+                    Belongs to <span class="owner-panel-notes"> {{employee.belongsTo.name}}</span>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -27,6 +27,8 @@
                     <div class="panel-wrapper">
                         <div class="panel-title">
                             <span class="badge">{{employee.firstName}} {{employee.lastName}}</span>
+
+                            <div class="pull-right" data-ng-show="employee.billable">Billable</div>
                         </div>
                         <div class="panel-stage">
                             <div class="row">
@@ -55,7 +57,8 @@
                                             <small class="panel-stage"> Projects</small>
                                         </div>
                                         <div class="panel-stage">
-                                            <small data-ng-repeat="proj in employee.worksFor">{{proj.name}}</small>
+                                            <small data-ng-repeat="proj in employee.worksFor">
+                                                {{proj.name}}&nbsp;&nbsp;</small>
                                         </div>
                                     </div>
                                 </div>
