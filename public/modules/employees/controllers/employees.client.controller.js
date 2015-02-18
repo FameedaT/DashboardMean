@@ -81,7 +81,6 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
                 });
             });
         };
-
         $scope.orgSelected = function () {
             $scope.employee.worksFor = [];
             $scope.organizations.forEach(function (org) {

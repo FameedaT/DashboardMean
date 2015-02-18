@@ -35,11 +35,13 @@
                                     <div class="panel-wrapper">
                                         <div class="panel-title">
                                             Billable Vs Bench
+                                            <div class="pull-right">Total:{{organization.totalHeadCount}}</div>
                                         </div>
                                         <div class="panel-stage">
                                             <canvas class="chart chart-bar" data="organization.data"
                                                     labels="organization.label" legend="true"
-                                                    series="organization.series">
+                                                    series="organization.series"
+                                                    colours="organization.colours">
                                             </canvas>
                                         </div>
                                     </div>

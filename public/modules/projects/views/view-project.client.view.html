@@ -25,11 +25,13 @@
                         <div class="col-xs-12 col-md-12">
                             <div class="panel-wrapper">
                                 <div class="panel-title">
-                                    Billable People
+                                    Billable vs Bench
+                                    <div class="pull-right">Total:{{project.totalHeadCount}}</div>
                                 </div>
                                 <div class="panel-stage">
                                     <canvas class="chart chart-doughnut" data="project.data"
-                                            labels="project.label" legend="true">
+                                            labels="project.label" legend="true"
+                                            colours="project.colours">
                                     </canvas>
                                 </div>
                             </div>

@@ -81,6 +81,7 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                         var data = [billable, bench];
                         organization.label = label;
                         organization.data = data;
+                        organization.colours = ['#B8DBFF', '#B20000'];
                     });
                 }
             });
@@ -109,6 +110,7 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                 var data = [billable, bench];
                 result.label = label;
                 result.data = data;
+                result.colours = ['#B8DBFF', '#B20000'];
                 console.log('data ' + result.data);
             });
         };
