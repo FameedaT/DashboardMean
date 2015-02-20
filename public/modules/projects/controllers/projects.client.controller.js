@@ -88,13 +88,24 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 result.label = ['Billable', 'Bench'];
                 result.colours = ['#B8DBFF', '#B20000'];
                 var data = [];
+                var belongsTo = undefined;
+                var owner = undefined;
                 data.push(result.billableHeadCount);
                 data.push(result.benchHeadCount);
                 result.data = data;
-                $scope.organizations.forEach(function (org) {
-                    if (org._id == $scope.project.belongsTo) {
-                        $scope.employees = org.members;
-                    }
+
+                $scope.organizations.$promise.then(function (orgs) {
+                    orgs.forEach(function (org) {
+                        if (org._id == $scope.project.belongsTo._id) {
+                            $scope.employees = org.members;
+                            belongsTo = result.belongsTo;
+                            owner = result.owner;
+                        }
+                    });
+                    $scope.project.belongsToView = belongsTo;
+                    $scope.project.belongsTo = belongsTo._id;
+                    $scope.project.ownerView = owner;
+                    $scope.project.owner = owner._id;
                 });
             });
         };

@@ -101,9 +101,6 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                         label.push(project.name);
                         billable.push(project.billableHeadCount);
                         bench.push(project.benchHeadCount);
-                        console.log(project.name);
-                        console.log('project.billableHeadCount ' + project.billableHeadCount);
-                        console.log('project.benchHeadCount ' + project.benchHeadCount);
                     });
                 }
                 result.series = ['Billable', 'Bench'];
@@ -111,7 +108,8 @@ angular.module('organizations').controller('OrganizationsController', ['$scope',
                 result.label = label;
                 result.data = data;
                 result.colours = ['#B8DBFF', '#B20000'];
-                console.log('data ' + result.data);
+                result.ownerView = result.owner;
+                result.owner = result.owner._id;
             });
         };
     }

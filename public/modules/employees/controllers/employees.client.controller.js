@@ -71,16 +71,37 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
         // Find existing Employee
         $scope.findOne = function () {
             $scope.employee = Employees.get({
-                employeeId: $stateParams.employeeId
-            }, function (result) {
-                $scope.employee.belongsTo = result.belongsTo;
-                $scope.organizations.forEach(function (org) {
-                    if ((result.belongsTo != undefined) && (org._id == result.belongsTo._id)) {
-                        $scope.projects = org.projects;
-                    }
-                });
-            });
+                    employeeId: $stateParams.employeeId
+                }, function (result) {
+                    $scope.employee.belongsToView = result.belongsTo;
+                    $scope.employee.belongsTo = result.belongsTo._id;
+                    $scope.projects = [];
+                    var worksFor = [];
+                    var worksForView = [];
+                    $scope.organizations.$promise.then(function (orgs) {
+                        orgs.forEach(function (org) {
+                            if ((result.belongsTo != undefined) && (org._id == result.belongsTo)) {
+                                org.projects.forEach(function (proj) {
+                                        $scope.projects.push(proj);
+                                        if ($scope.employee.worksFor != undefined) {
+                                            $scope.employee.worksFor.forEach(function (p) {
+                                                if (proj._id == p._id) {
+                                                    worksFor.push(proj._id);
+                                                    worksForView.push(proj);
+                                                }
+                                            });
+                                        }
+                                    }
+                                );
+                            }
+                        });
+                        $scope.employee.worksFor = worksFor;
+                        $scope.employee.worksForView = worksForView;
+                    });
+                }
+            );
         };
+
         $scope.orgSelected = function () {
             $scope.employee.worksFor = [];
             $scope.organizations.forEach(function (org) {
@@ -90,4 +111,5 @@ angular.module('employees').controller('EmployeesController', ['$scope', '$state
             });
         };
     }
-]);
+])
+;
